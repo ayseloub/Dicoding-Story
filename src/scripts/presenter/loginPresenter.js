@@ -33,7 +33,7 @@ export default class LoginPresenter {
     } catch (error) {
       this.showError('Terjadi kesalahan jaringan');
     } finally {
-      removeLoading(); // pastikan loading dihilangkan setelah selesai
+      removeLoading();
     }
   }
 

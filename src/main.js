@@ -1,4 +1,3 @@
-// src/main.js
 import router from './scripts/routes/routes.js';
 import { registerSW } from 'virtual:pwa-register';
 import NotificationPresenter from './scripts/presenter/notificationPresenter.js';

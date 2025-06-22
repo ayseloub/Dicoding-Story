@@ -1,5 +1,3 @@
-// src/scripts/presenter/notificationPresenter.js
-
 const VAPID_PUBLIC_KEY = 'BCCs2eonMI-6H2ctvFaWg-UYdDv387Vno_bzUzALpB442r2lCnsHmtrx8biyPi_E-1fSGABK_Qs_GlvPoJJqxbk';
 
 function urlBase64ToUint8Array(base64String) {
@@ -27,7 +25,6 @@ const notificationPresenter = {
 
     const registration = await navigator.serviceWorker.ready;
 
-    // ✅ SUBSCRIBE
     subscribeBtn.addEventListener('click', async () => {
       console.log('[Notif] Subscribe button clicked');
 
@@ -70,7 +67,6 @@ const notificationPresenter = {
       alert('Notifikasi berhasil diaktifkan!');
     });
 
-    // ✅ UNSUBSCRIBE
     unsubscribeBtn.addEventListener('click', async () => {
       console.log('[Notif] Unsubscribe button clicked');
 
