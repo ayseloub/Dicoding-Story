@@ -50,6 +50,16 @@ export default class StoryView {
     const closeBtn = this.container.querySelector('#close-camera');
     const takeBtn = this.container.querySelector('#take-photo');
 
+    const stopCamera = () => {
+      if (this.cameraStream) {
+        this.cameraStream.getTracks().forEach(track => track.stop());
+        this.cameraStream = null;
+      }
+      this.video.style.display = 'none';
+      takeBtn.style.display = 'none';
+      closeBtn.style.display = 'none';
+    };
+
     openBtn.addEventListener('click', async () => {
       try {
         this.cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -63,15 +73,7 @@ export default class StoryView {
       }
     });
 
-    closeBtn.addEventListener('click', () => {
-      if (this.cameraStream) {
-        this.cameraStream.getTracks().forEach(track => track.stop());
-        this.cameraStream = null;
-      }
-      this.video.style.display = 'none';
-      takeBtn.style.display = 'none';
-      closeBtn.style.display = 'none';
-    });
+    closeBtn.addEventListener('click', stopCamera);
 
     takeBtn.addEventListener('click', () => {
       this.canvas.width = this.video.videoWidth;
@@ -82,6 +84,7 @@ export default class StoryView {
         this.capturedBlob = blob;
         this.canvas.style.display = 'block';
         this.video.style.display = 'none';
+        stopCamera(); // Kamera otomatis mati setelah ambil gambar
       }, 'image/png');
     });
   }
